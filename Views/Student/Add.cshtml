@@ -1,0 +1,53 @@
+﻿@model StudentViewModel
+@{
+	ViewData["Title"] = "Add";
+}
+
+<div class="card">
+	<div class="card-header">Agregar Estudiante</div>
+
+	<div class="card">
+		<form asp-action="SaveStudent" asp-controller="Student" method="post">
+			<div class="mb-3">
+				<label for="dni" class="form-label">DNI</label>
+				<input asp-for="dni" class="form-control" type="text" />
+			</div>
+			<div class="mb-3">
+				<label for="firstName" class="form-label">Nombre:</label>
+				<input asp-for="firstName" class="form-control" type="text" />
+			</div>
+			<div class="mb-3">
+				<label for="lastName" class="form-label">Apellido:</label>
+				<input asp-for="lastName" class="form-control" type="text" />
+			</div>
+			<div class="mb-3">
+				<label for="dateOfBirth" class="form-label">Fecha de Nacimiento:</label>
+				<input asp-for="dateOfBirth" class="form-control" type="date" />
+			</div>
+			<div class="mb-3">
+				<label for="dateOfBirth" class="form-label">Genero</label>
+				<select asp-for="Genre" class="form-control">
+					<option value="">[SELECCIONE]</option>
+					<option value="M">Masculino</option>
+					<option value="F">Femenino</option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="email" class="form-label">Email:</label>
+				<input asp-for="Email" class="form-control" type="text" />
+			</div>
+			<div class="mb-3">
+				<label for="isActive" class="form-label">Estado:</label>
+				<select asp-for="isActive" class="form-control">
+					<option value="">[SELECCIONE]</option>
+					<option value="1">Activo</option>
+					<option value="0">Inactivo</option>
+				</select>
+			</div>
+			<div class="card-body">
+				<a asp-action="List" asp-controller="Student" class="btn btn-warning">Volver</a>
+				<button class="btn btn-success" type="submit">Guardar</button>
+			</div>
+		</form>
+	</div>
+</div>

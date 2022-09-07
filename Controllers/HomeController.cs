@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using SingleResponsability.DBContext;
 using SingleResponsability.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SingleResponsability.Controllers
 {
@@ -25,8 +20,6 @@ namespace SingleResponsability.Controllers
 
         public IActionResult Index()
         {
-            //Conexion con = new Conexion(_configuration.GetSection("StringConnections").GetSection("Samtel").Value);
-            //con.Select();
             return View();
         }
 

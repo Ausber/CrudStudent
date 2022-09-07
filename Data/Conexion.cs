@@ -8,7 +8,6 @@ namespace SingleResponsability.Data
     public class Conexion
     {
         private string StringSql = string.Empty;
-        SqlConnection con;
 
         private static SqlConnection instancia = null;
         private static readonly object padlock = new object();

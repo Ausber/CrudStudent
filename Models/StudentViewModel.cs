@@ -33,6 +33,6 @@ namespace SingleResponsability.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Estado es requerido")]
-        public bool? isActive { get; set; }
+        public int isActive { get; set; }
     }
 }

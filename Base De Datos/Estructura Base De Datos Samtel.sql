@@ -1,3 +1,5 @@
+USE master
+GO
 CREATE DATABASE StudentsNotes
 
 USE StudentsNotes
@@ -32,3 +34,28 @@ CREATE TABLE Note (
 	CONSTRAINT FK_Student FOREIGN KEY (student_id) REFERENCES Student(student_id),
 	CONSTRAINT FK_Subject FOREIGN KEY (subject_id) REFERENCES Subject(subject_id),
 )
+
+GO
+CREATE PROCEDURE spStudent
+	@Op VARCHAR(50),
+	@dni BIGINT = 0,
+	@firstName VARCHAR(50) = '',
+	@lastName  VARCHAR(50) = '',
+	@dateOfBirth DATE = null,
+	@genre CHAR(1) = 'M',
+	@email  VARCHAR(50) = '',
+	@isActive BIT = 0
+AS
+BEGIN
+	IF(@Op = 'Listar')
+	BEGIN
+		SELECT * FROM Student
+	END
+
+	IF(@Op = 'Guardar')
+	BEGIN
+		INSERT INTO Student (dni,firstName,lastName,dateOfBirth,genre,email,isActive)
+		VALUES(@dni,@firstName,@lastName,@dateOfBirth,@genre,@email,@isActive)
+
+	END
+END

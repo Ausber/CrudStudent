@@ -4,3 +4,5 @@ bin/Debug
 *.cache
 bin/Debug
 obj
+.vs/SingleResponsability/config/applicationhost.config
+appsettings.json

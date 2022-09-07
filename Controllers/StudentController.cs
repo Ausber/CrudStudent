@@ -1,23 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SingleResponsability.Models;
+using SingleResponsability.Models.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SingleResponsability.Controllers
 {
     public class StudentController : Controller
     {
-        public IActionResult Index()
+        StudentService studentService = new StudentService();
+        public IActionResult List()
+        {
+            var oLista = studentService.List();
+            return View("Index", oLista);
+        }
+
+        public IActionResult Add()
         {
             return View();
         }
-
-        public IActionResult Save(StudentViewModel student)
+        [HttpPost]
+        public IActionResult SaveStudent(StudentViewModel student)
         {
-            return RedirectToAction("Index");
-            //return View();
+            var resp = studentService.Create(student);
+            if (resp)
+                return RedirectToAction("List");
+            else
+                return View("Add");          
         }
     }
 }
