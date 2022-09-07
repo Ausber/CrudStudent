@@ -18,7 +18,7 @@ CREATE TABLE Student (
 GO
 CREATE TABLE Subject (
 	subject_id INT IDENTITY(1,1),
-	name bigint not null,
+	name VARCHAR(50) not null,
 	description VARCHAR(50) NOT NULL,
 	isActive BIT DEFAULT(1)
 	CONSTRAINT Pk_Subject PRIMARY KEY CLUSTERED (subject_id)
@@ -29,7 +29,7 @@ CREATE TABLE Note (
 	note_id INT IDENTITY(1,1),
 	student_id int not null,
 	subject_id int NOT NULL,
-	note DECIMAL(2,1) DEFAULT(1)
+	note DECIMAL(2,1) NOT NULL
 	CONSTRAINT Pk_Note PRIMARY KEY CLUSTERED (note_id),
 	CONSTRAINT FK_Student FOREIGN KEY (student_id) REFERENCES Student(student_id),
 	CONSTRAINT FK_Subject FOREIGN KEY (subject_id) REFERENCES Subject(subject_id),
@@ -59,3 +59,28 @@ BEGIN
 
 	END
 END
+GO
+GO
+ALTER PROCEDURE spSubject
+	@Op VARCHAR(50),
+	@name VARCHAR(50)= '',
+	@descripcion VARCHAR(50)= '',
+	@isActive BIT = 0
+AS
+BEGIN
+	IF(@Op = 'Listar')
+	BEGIN
+		SELECT * FROM Subject
+	END
+
+	IF(@Op = 'Guardar')
+	BEGIN
+		INSERT INTO Subject (name,description,isActive)
+		VALUES(@name,@descripcion,@isActive)
+	END
+END
+
+exec spSubject @Op=N'Guardar',@name=N'Maths',@descripcion=N'Areas Matematicas',@isActive=1
+
+exec spSubject @Op=N'Listar'
+ALTER TABLE Subject ALTER COLUMN name VARCHAR(50) NOT NULL

@@ -18,6 +18,7 @@ namespace SingleResponsability.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult SaveStudent(StudentViewModel student)
         {

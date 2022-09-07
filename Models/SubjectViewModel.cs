@@ -10,6 +10,6 @@ namespace SingleResponsability.Models
         public long subject_id { get; set; }
 	    public string name { get; set; }
 	    public string description { get; set; }
-        public bool isActive { get; set; }
+        public int isActive { get; set; }
     }
 }
