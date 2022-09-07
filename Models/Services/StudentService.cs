@@ -7,9 +7,10 @@ namespace SingleResponsability.Models.Services
 {
     public class StudentService
     {
-        public void List()
+        public List<StudentViewModel> List()
         {
-
+            var oStudent = new List<StudentViewModel>();
+            return oStudent;
         }
         public void Create(StudentViewModel student)
         {

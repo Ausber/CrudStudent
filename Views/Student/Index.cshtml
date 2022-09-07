@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Agregar Estudiante";
+	@model StudentViewModel;
+}
+
+<div class="text-center">
+	<h1 class="display-4">Agregrar Nuevo Estudiante</h1>
+	<form action="Student/Save" method="post">
+		<div class="form-group">
+			<label for="dni">DNI:</label>
+			<input type="text" class="form-control" id="dni" placeholder="Enter DNI" name="dni">
+		</div>
+
+		<div class="form-group">
+			<label for="firstname">Nombre:</label>
+			<input type="text" class="form-control" id="firstname" placeholder="Enter FirstName" name="firstname">
+		</div>
+
+		<div class="form-group">
+			<label for="lastName">Apellido:</label>
+			<input type="text" class="form-control" id="lastName" placeholder="Enter LastName" name="lastName">
+		</div>
+
+		<div class="form-group">
+			<label for="dateOfBirth">Fecha De Nacimiento:</label>
+			<input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth">
+		</div>
+
+		<div class="form-group">
+			<label for="Genre">Genero:</label>
+			<select id="Genre" name="Genre" class="form-control">
+				<option value="">[SELECCIONE]</option>
+				<option value="M">Masculino</option>
+				<option value="F">Femenino</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="Email">Email:</label>
+			<input type="email" class="form-control" id="Email" name="Email">
+		</div>
+
+		<div class="form-group">
+			<label for="isActive">Estado:</label>
+			<select id="isActive" name="isActive" class="form-control">
+				<option value="0">Desactivado</option>
+				<option value="1">Activado</option>
+			</select>
+		</div>
+		<div>
+			<button class="btn btn-primary" type="submit">Save</button>
+		</div>
+	</form>
+</div>
+

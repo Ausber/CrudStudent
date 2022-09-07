@@ -1,2 +1,6 @@
 ﻿.vs/SingleResponsability/v16
 .vs/SingleResponsability/DesignTimeBuild
+bin/Debug
+*.cache
+bin/Debug
+obj

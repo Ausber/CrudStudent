@@ -25,8 +25,8 @@ namespace SingleResponsability.Controllers
 
         public IActionResult Index()
         {
-            Conexion con = new Conexion(_configuration.GetSection("StringConnections").GetSection("Samtel").Value);
-            con.Select();
+            //Conexion con = new Conexion(_configuration.GetSection("StringConnections").GetSection("Samtel").Value);
+            //con.Select();
             return View();
         }
 
