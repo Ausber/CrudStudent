@@ -10,13 +10,13 @@ namespace SingleResponsability.Models.Services
 {
     public class StudentService
     {
-        UtilitesDB utils = new UtilitesDB();
         public List<StudentViewModel> List()
         {
             var oStudent = new List<StudentViewModel>();
+            var con = Conexion.getConexion;
             try
             {
-                var con = Conexion.getConexion;
+                
                 con.Open();
                 SqlCommand cmd = new SqlCommand("spStudent", con);
                 cmd.Parameters.AddWithValue("Op", "Listar");
@@ -27,7 +27,7 @@ namespace SingleResponsability.Models.Services
                     oStudent.Add(new StudentViewModel()
                     {
                         Student_id = Convert.ToInt32(reader["student_id"]),
-                        dni = Convert.ToInt32(reader["dni"]),
+                        dni = reader["dni"].ToString(),
                         firstName = reader["firstName"].ToString(),
                         lastName = reader["lastName"].ToString(),
                         dateOfBirth = Convert.ToDateTime(reader["dateOfBirth"]),
@@ -40,7 +40,7 @@ namespace SingleResponsability.Models.Services
             }
             catch (Exception)
             {
-
+                con.Close();
                 throw;
             }
            

@@ -21,6 +21,8 @@ namespace SingleResponsability.Controllers
         [HttpPost]
         public IActionResult SaveStudent(StudentViewModel student)
         {
+            if (!ModelState.IsValid)
+                return View("Add");
             var resp = studentService.Create(student);
             if (resp)
                 return RedirectToAction("List");

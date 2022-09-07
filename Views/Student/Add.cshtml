@@ -2,47 +2,53 @@
 @{
 	ViewData["Title"] = "Add";
 }
-
-<div class="card">
+<div class="card container-form" style="width: 500px;">
 	<div class="card-header">Agregar Estudiante</div>
 
-	<div class="card">
-		<form asp-action="SaveStudent" asp-controller="Student" method="post">
+	<div class="card" style="margin:10px;">
+		<form class="formulario" asp-action="SaveStudent" asp-controller="Student" method="post">
 			<div class="mb-3">
 				<label for="dni" class="form-label">DNI</label>
-				<input asp-for="dni" class="form-control" type="text" />
+				<input style="width: 250px;" asp-for="dni" class="form-control" type="text" />
+				<span asp-validation-for="dni" class="text-danger"></span>
 			</div>
 			<div class="mb-3">
 				<label for="firstName" class="form-label">Nombre:</label>
-				<input asp-for="firstName" class="form-control" type="text" />
+				<input style="width: 250px;" asp-for="firstName" class="form-control" type="text" />
+				<span asp-validation-for="firstName" class="text-danger"></span>
 			</div>
 			<div class="mb-3">
 				<label for="lastName" class="form-label">Apellido:</label>
-				<input asp-for="lastName" class="form-control" type="text" />
+				<input style="width: 250px;" asp-for="lastName" class="form-control" type="text" />
+				<span asp-validation-for="lastName" class="text-danger"></span>
 			</div>
 			<div class="mb-3">
 				<label for="dateOfBirth" class="form-label">Fecha de Nacimiento:</label>
-				<input asp-for="dateOfBirth" class="form-control" type="date" />
+				<input style="width: 250px;" asp-for="dateOfBirth" class="form-control" />
+				<span asp-validation-for="dateOfBirth" class="text-danger"></span>
 			</div>
 			<div class="mb-3">
-				<label for="dateOfBirth" class="form-label">Genero</label>
-				<select asp-for="Genre" class="form-control">
+				<label for="Genre" class="form-label">Genero</label>
+				<select style="width: 250px;" asp-for="Genre" class="form-control">
 					<option value="">[SELECCIONE]</option>
 					<option value="M">Masculino</option>
 					<option value="F">Femenino</option>
 				</select>
+				<span asp-validation-for="Genre" class="text-danger"></span>
 			</div>
 			<div class="mb-3">
 				<label for="email" class="form-label">Email:</label>
-				<input asp-for="Email" class="form-control" type="text" />
+				<input style="width: 250px;" asp-for="Email" class="form-control" type="text" />
+				<span asp-validation-for="Email" class="text-danger"></span>
 			</div>
 			<div class="mb-3">
 				<label for="isActive" class="form-label">Estado:</label>
-				<select asp-for="isActive" class="form-control">
-					<option value="">[SELECCIONE]</option>
+				<select style="width: 250px;" asp-for="isActive" class="form-control">
+					<option value="-1">[SELECCIONE]</option>
 					<option value="1">Activo</option>
 					<option value="0">Inactivo</option>
 				</select>
+				<span asp-validation-for="isActive" class="text-danger"></span>
 			</div>
 			<div class="card-body">
 				<a asp-action="List" asp-controller="Student" class="btn btn-warning">Volver</a>
