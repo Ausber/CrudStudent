@@ -1,0 +1,38 @@
+﻿@model dynamic
+@{
+	ViewData["Title"] = "Gestionar Notas";
+}
+@Html.AntiForgeryToken()
+<div class="container">
+	<div class="card">
+		<div class="card-header">Gestion De Notas</div>
+		<div class="card-body">
+			<label>Alumno</label>
+			<select class="form-control" id="student" name="student" onchange="fnListSubjects()">
+				<option value="-1">Seleccione</option>
+				@foreach (var student in Model.Students)
+				{
+					<option value="@student.Student_id">@student.firstName</option>
+
+				}
+			</select>
+		</div>
+
+		<div class="card-body">
+			<table id="tableNotes" class="table table-striped">
+				<thead>
+					<tr>
+						<td>Asignatura</td>
+						<td>Nota</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+

@@ -36,7 +36,7 @@ CREATE TABLE Note (
 )
 
 GO
-CREATE PROCEDURE spStudent
+ALTER PROCEDURE spStudent
 	@Op VARCHAR(50),
 	@dni BIGINT = 0,
 	@firstName VARCHAR(50) = '',
@@ -54,14 +54,19 @@ BEGIN
 
 	IF(@Op = 'Guardar')
 	BEGIN
+		IF EXISTS (SELECT 1 FROM Student WHERE dni = @dni)
+		BEGIN
+			UPDATE Student SET firstName = @firstName,lastName = @lastName,dateOfBirth = @dateOfBirth, genre = @genre, Email = @email,isActive = @isActive  WHERE dni = @dni
+		END
+		ELSE
+		BEGIN
 		INSERT INTO Student (dni,firstName,lastName,dateOfBirth,genre,email,isActive)
 		VALUES(@dni,@firstName,@lastName,@dateOfBirth,@genre,@email,@isActive)
-
+		END
 	END
 END
 GO
-GO
-ALTER PROCEDURE spSubject
+CREATE PROCEDURE spSubject
 	@Op VARCHAR(50),
 	@name VARCHAR(50)= '',
 	@descripcion VARCHAR(50)= '',
@@ -79,8 +84,34 @@ BEGIN
 		VALUES(@name,@descripcion,@isActive)
 	END
 END
+GO
+CREATE PROCEDURE spNotes
+	@Op VARCHAR(50),
+	@student_id int= 0,
+	@subject_id VARCHAR(50)= '',
+	@note DECIMAL(18,2) = 0
+AS
+BEGIN
+	IF(@Op = 'Listar')
+	BEGIN
+		SELECT Note.note_id,Note.student_id,Subject.subject_id,Subject.name,ISNULL(Note.note,0) Note
+		FROM Subject 
+		LEFT JOIN Note ON Subject.subject_id = Note.subject_id
+		LEFT JOIN Student ON Student.student_id = Note.student_id
+		WHERE Student.student_id = @student_id 
+	END
 
-exec spSubject @Op=N'Guardar',@name=N'Maths',@descripcion=N'Areas Matematicas',@isActive=1
+	IF(@Op = 'Guardar')
+	BEGIN
+		IF EXISTS (SELECT 1 FROM Note WHERE subject_id = @subject_id AND student_id = @student_id)
+		BEGIN
+			UPDATE Note SET note = @note
+		END
+		ELSE
+		BEGIN
+			INSERT INTO Note (student_id,subject_id,note)
+			VALUES(@student_id,@subject_id,@note)
+		END
+	END
+END
 
-exec spSubject @Op=N'Listar'
-ALTER TABLE Subject ALTER COLUMN name VARCHAR(50) NOT NULL

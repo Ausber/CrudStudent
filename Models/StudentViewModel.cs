@@ -12,7 +12,6 @@ namespace SingleResponsability.Models
         public long Student_id { get; set; }
 
         [Required(ErrorMessage = "DNI es requerido")]
-        [StringLength(0, ErrorMessage = "Debe Ingresar El DNI")]
         public string dni { get; set; }
 
         [Required(ErrorMessage = "Nombre es requerido")]
@@ -23,9 +22,7 @@ namespace SingleResponsability.Models
         [StringLength(50, ErrorMessage = "Logitud máxima 50")]
         public string lastName { get; set; }
 
-        [Display(Name = "Fecha Nacimiento")]
-        [DataType(DataType.Date)]
-        [StringLength(10, ErrorMessage = "Fecha de Nacimiento Requerida")]
+
         public DateTime dateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Genero es requerido")]
